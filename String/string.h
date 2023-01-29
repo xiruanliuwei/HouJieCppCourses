@@ -2,6 +2,8 @@
 #ifndef __MYSTRING__
 #define __MYSTRING__
 
+// #include <iostream>
+
 #include <cstring>
 
 class String {
@@ -34,11 +36,34 @@ inline String::String(const char* cstr) {
 }
 
 inline String::String(const String& str) {
-    std::cout << "String constructor 03" << std::endl;
+    std::cout << "String constructor 03, copy constructor" << std::endl;
+
+    m_data = new char[strlen(str.m_data) + 1];
+    strcpy(m_data, str.m_data);
+}
+
+inline String& String::operator=(const String& str) {
+    std::cout << "String, copy assignment function" << std::endl;
+
+    if(this == &str) {
+        return *this;
+    }
+
+    delete[] m_data;
+
+    m_data = new char[strlen(str.m_data) + 1];
+    strcpy(m_data, str.m_data);
+    return *this;
 }
 
 inline String::~String() {
     delete[] m_data;
+}
+
+// It must be a global function, it can not be a class member function.
+std::ostream& operator<<(std::ostream& os, const String& str) {
+    os << str.get_c_str();
+    return os;
 }
 
 #endif

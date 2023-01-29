@@ -17,6 +17,11 @@ int main(int argc, char** argv) {
 
         delete p;
     }
+
+    {
+        String s1("hello, s1");
+        std::cout << s1 << std::endl;
+    }
     
     return 0;
 }
