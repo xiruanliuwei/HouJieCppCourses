@@ -15,7 +15,7 @@ public:
         return (double)(m_numerator / m_denominator);
     }
 
-    friend double operator+(int i, Fraction f) {
+    friend double operator+(int i, const Fraction& f) {
         cout << "Fraction operator+() is called!" << endl;
 
         return (double)i + (double)f;
